@@ -157,6 +157,7 @@ class Grant(models.Model):
     user = models.ForeignKey(AUTH_USER_MODEL)
     client = models.ForeignKey(Client)
     code = models.CharField(max_length=255, default=long_token)
+    created_at = models.DateTimeField(auto_now_add=True)
     expires = models.DateTimeField(default=get_code_expiry)
     redirect_uri = models.CharField(max_length=255, blank=True)
     scope = ScopeField(default=0)
@@ -187,6 +188,7 @@ class AccessToken(models.Model):
     user = models.ForeignKey(AUTH_USER_MODEL, null=True)
     token = models.CharField(max_length=255, default=long_token, db_index=True)
     client = models.ForeignKey(Client)
+    created_at = models.DateTimeField(auto_now_add=True)
     expires = models.DateTimeField()
     scope = ScopeField(default=0)
     type = models.IntegerField(default=0)
@@ -240,6 +242,7 @@ class RefreshToken(models.Model):
     access_token = models.OneToOneField(AccessToken,
             related_name='refresh_token')
     client = models.ForeignKey(Client)
+    created_at = models.DateTimeField(auto_now_add=True)
     expired = models.BooleanField(default=False)
 
     def __unicode__(self):
