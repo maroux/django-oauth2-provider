@@ -1,4 +1,5 @@
-Django>=1.4
+Django==1.6
+south==1.0
 shortuuid>=0.3
 django-enumfield>=1.0
 pillow>=2.0.0,<3.0

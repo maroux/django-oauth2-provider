@@ -263,3 +263,10 @@ class RefreshToken(models.Model):
 
     def __unicode__(self):
         return self.token
+
+"""
+Fix for south being unable to introspect custom fields
+https://github.com/pinax/django-user-accounts/issues/61
+"""
+from south.modelsinspector import add_introspection_rules
+add_introspection_rules([], ["^provider\.oauth2\.models\.ScopeField"])
