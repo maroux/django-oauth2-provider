@@ -267,6 +267,10 @@ class RefreshToken(models.Model):
 """
 Fix for south being unable to introspect custom fields
 https://github.com/pinax/django-user-accounts/issues/61
-"""
+Commenting out because projects like admin which depend on
+this have moved to Django 1.7 and above and use django migrations
+instead of south.
+
 from south.modelsinspector import add_introspection_rules
 add_introspection_rules([], ["^provider\.oauth2\.models\.ScopeField"])
+"""
