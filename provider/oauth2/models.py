@@ -23,14 +23,29 @@ except ImportError:
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 class ClientStatus:
+    INTERNAL = 0
     TEST = 1
     LIVE = 2
     DISABLED = 3
 
     CHOICES = (
+        (INTERNAL, 'INTERNAL'),
         (TEST, 'TEST'),
         (LIVE, 'LIVE'),
         (DISABLED, 'DISABLED'),
+    )
+
+class EventDeliveryPreference:
+    NONE = 0
+    WEBHOOK = 1
+    WEBSOCKET = 2
+    WEBHOOK_FIXED_IP = 3
+
+    CHOICES = (
+        (NONE, 'NONE'),
+        (WEBHOOK, 'WEBHOOK'),
+        (WEBSOCKET, 'WEBSOCKET'),
+        (WEBHOOK_FIXED_IP, 'WEBHOOK_FIXED_IP'),
     )
 
 class ScopeField(models.IntegerField):
@@ -97,6 +112,7 @@ class Client(models.Model):
     client_secret = models.CharField(max_length=255, default=long_token)
     client_type = models.IntegerField(choices=CLIENT_TYPES, default=constants.CONFIDENTIAL)
     scope = ScopeField(default=0)
+    event_delivery_preference = models.PositiveSmallIntegerField(max_length=2, choices=EventDeliveryPreference.CHOICES, default=0)
 
     def __unicode__(self):
         return self.redirect_uri
