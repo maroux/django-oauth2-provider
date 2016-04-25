@@ -47,7 +47,7 @@ class EventDeliveryPreference:
         (WEBHOOK, 'WEBHOOK'),
         (WEBSOCKET, 'WEBSOCKET'),
         (WEBHOOK_FIXED_IP, 'WEBHOOK_FIXED_IP'),
-        (BOTH, 'BOTH'),
+        (BOTH, 'BOTH - ONLY FOR FLEET. DO NOT USE'),
     )
 
 class ScopeField(models.IntegerField):
