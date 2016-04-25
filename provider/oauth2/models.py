@@ -40,12 +40,14 @@ class EventDeliveryPreference:
     WEBHOOK = 1
     WEBSOCKET = 2
     WEBHOOK_FIXED_IP = 3
+    BOTH = 4
 
     CHOICES = (
         (NONE, 'NONE'),
         (WEBHOOK, 'WEBHOOK'),
         (WEBSOCKET, 'WEBSOCKET'),
         (WEBHOOK_FIXED_IP, 'WEBHOOK_FIXED_IP'),
+        (BOTH, 'BOTH'),
     )
 
 class ScopeField(models.IntegerField):
