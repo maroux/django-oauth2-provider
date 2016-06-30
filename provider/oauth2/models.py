@@ -107,14 +107,14 @@ class Client(models.Model):
                              null=True, blank=True,
                              storage=constants.IMAGE_STORAGE,
                              help_text="40x40 pixel logo of your application")
-    status = models.PositiveSmallIntegerField(max_length=2, choices=ClientStatus.CHOICES, default=1)
+    status = models.PositiveSmallIntegerField(choices=ClientStatus.CHOICES, default=1)
     last_updated_date = models.DateTimeField(auto_now=True)
     created_date = models.DateTimeField(auto_now_add=True)
     client_id = models.CharField(max_length=255, default=short_token)
     client_secret = models.CharField(max_length=255, default=long_token)
     client_type = models.IntegerField(choices=CLIENT_TYPES, default=constants.CONFIDENTIAL)
     scope = ScopeField(default=0)
-    event_delivery_preference = models.PositiveSmallIntegerField(max_length=2, choices=EventDeliveryPreference.CHOICES, default=0)
+    event_delivery_preference = models.PositiveSmallIntegerField(choices=EventDeliveryPreference.CHOICES, default=0)
 
     def __unicode__(self):
         return self.redirect_uri
